@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Times New Roman", Times, serif;
+  }
+
+#uploadExcel{
+    font-family: "Times New Roman", Times, serif;
+    position: fixed;
+    top: 30%;
+    left: 35%;
+    width: 600px;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}  
+
+#chooseFile{
+    padding: 15px;
+}
+
+#formContainer{
+    text-align: center;
+}
