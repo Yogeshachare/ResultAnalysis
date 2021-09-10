@@ -36,10 +36,8 @@ if(isset($_FILES['excel']['name'])){
         $i=0;
         if($rowcol[0]!=1 &&$rowcol[1]!=1){
 		foreach ($excel->rows($sheet) as $key => $row) {
-			//print_r($row);
 			$q="";
 			foreach ($row as $key => $cell) {
-				//print_r($cell);echo "<br>";
 				if($i==0){
 					$q.=$cell. " varchar(50),";
 				}else{
@@ -50,6 +48,10 @@ if(isset($_FILES['excel']['name'])){
 				$query="CREATE table ".$excel->sheetName($sheet)." (".rtrim($q,",").");";
 			}else{
 				$query="INSERT INTO ".$excel->sheetName($sheet)." values (".rtrim($q,",").");";
+			}
+      if(mysqli_query($con,$query))
+			{
+				header("Location: ./showResult.php?fileAdd=success");
 			}
 			$i++;
 		}
