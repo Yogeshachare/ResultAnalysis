@@ -6,7 +6,7 @@ include('database_connection.php');
 
 $column = array("id", "admissionNo", "email", "branch", "description", "status");
 
-$query = "SELECT * FROM harassment";
+$query = "SELECT * FROM sheet1";
 
 if(isset($_POST["search"]["value"]))
 {

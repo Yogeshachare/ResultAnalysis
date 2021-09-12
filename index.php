@@ -45,6 +45,8 @@ if(isset($_FILES['excel']['name'])){
 				}
 			}
 			if($i==0){
+        $name = $excel->sheetName($sheet);
+				mysqli_query($con,"DROP table  if exists $name;");
 				$query="CREATE table ".$excel->sheetName($sheet)." (".rtrim($q,",").");";
 			}else{
 				$query="INSERT INTO ".$excel->sheetName($sheet)." values (".rtrim($q,",").");";
