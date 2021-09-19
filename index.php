@@ -47,13 +47,14 @@ if(isset($_FILES['excel']['name'])){
 			if($i==0){
         $name = $excel->sheetName($sheet);
 				mysqli_query($con,"DROP table  if exists $name;");
-				$query="CREATE table ".$excel->sheetName($sheet)." (".rtrim($q,",").");";
+				$query="CREATE table ".$excel->sheetName($sheet)."(Id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,".rtrim($q,",").");";
+        echo "$query";
 			}else{
-				$query="INSERT INTO ".$excel->sheetName($sheet)." values (".rtrim($q,",").");";
+				$query="INSERT INTO ".$excel->sheetName($sheet)." values (Null,".rtrim($q,",").");";
 			}
       if(mysqli_query($con,$query))
 			{
-				header("Location: ./showResult.php?fileAdd=success");
+				header("Location: ./showResult.php?added=success");
 			}
 			$i++;
 		}

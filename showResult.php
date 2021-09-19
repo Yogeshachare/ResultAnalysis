@@ -31,9 +31,9 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
-
+include "includes/dbh.inc.php";
 // Query to get columns from table
-$query = $db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'result' AND TABLE_NAME = 'sheet1'");
+$query = $conn->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'result' AND TABLE_NAME = 'sheet1'");
 
 while($row = $query->fetch_assoc()){
     $result[] = $row;
@@ -41,16 +41,21 @@ while($row = $query->fetch_assoc()){
 
 // Array of all column names
 $columnArr = array_column($result, 'COLUMN_NAME');
-echo "$columnArr[0]";
 ?>
 
   <div class="container" id="Table">
   <h3>Result</h3>
   <table class="table" id="user_data">
     <thead>
-    <tr><th><?php echo "$columnArr[0]"; ?></th><th><?php echo "$columnArr[1]"; ?></th><th><?php echo "$columnArr[2]"; ?></th><th><?php echo "$columnArr[3]"; ?></th>
-    <th><?php echo "$columnArr[4]"; ?></th><th><?php echo "$columnArr[5]"; ?></th><th><?php echo "$columnArr[6]"; ?></th><th><?php echo "$columnArr[7]"; ?></th>
-    <th><?php echo "$columnArr[8]"; ?></th><th><?php echo "$columnArr[9]"; ?></th><th><?php echo "$columnArr[10]"; ?></th></tr>
+    <tr>
+    <?php
+      for($x = 0; $x < count($columnArr); $x++){
+    ?>  
+    <th><?php echo "$columnArr[$x]"; ?></th>
+  <?php 
+      }
+  ?>
+  </tr>
     </thead>
     </table>
     <script type="text/javascript" language="javascript" >
@@ -65,16 +70,13 @@ var dataTable = $('#user_data').DataTable({
   type:"POST"
  }
 });
-
 $('#user_data').on('draw.dt', function(){
  $('#user_data').Tabledit({
   url:"actionResult.php",
   dataType:"json",
   columns:{
    identifier : [0, 'id'],
-   editable:[[1, <?php echo "$columnArr[0]"; ?>], [2, <?php echo "$columnArr[1]"; ?>],[3,<?php echo "$columnArr[2]"; ?>], [4,<?php echo "$columnArr[3]"; ?>],  
-   [5, <?php echo "$columnArr[4]"; ?>], [6, <?php echo "$columnArr[5]"; ?>], [7, <?php echo "$columnArr[6]"; ?>], [8, <?php echo "$columnArr[7]"; ?>], [9, <?php echo "$columnArr[8]"; ?>],
-   [10, <?php echo "$columnArr[9]"; ?>], [6, <?php echo "$columnArr[10]"; ?>]]
+   editable:[[1,"Admission_No"]]
   },
   restoreButton:false,
   onSuccess:function(data, textStatus, jqXHR)

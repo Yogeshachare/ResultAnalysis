@@ -4,21 +4,33 @@ include('database_connection.php');
 if($_POST['action'] == 'edit')
 {
  $data = array(
-  ':admissionNo'  => $_POST['admissionNo'],
-  ':email'  => $_POST['email'],
-  ':branch'   => $_POST['branch'],
-  ':description'   => $_POST['description'],
-  ':status'   => $_POST['status'],
+  ':Admission_No'  => $_POST['Admission_No'],
+  ':Student_Name'  => $_POST['Student_Name'],
+  ':Roll_No'   => $_POST['Roll_No'],
+  ':Department'   => $_POST['Department'],
+  ':Maths'   => $_POST['Maths'],
+  ':Mechanics'   => $_POST['Mechanics'],
+  ':BEE'   => $_POST['BEE'],
+  ':Physics'   => $_POST['Physics'],
+  ':Chemistry'   => $_POST['Chemistry'],
+  ':Total'   => $_POST['Total'],
+  ':Percentage'   => $_POST['Percentage'],
   ':id'    => $_POST['id']
  );
 
  $query = "
- UPDATE harassment 
- SET admissionNo = :admissionNo, 
- email = :email, 
- branch = :branch,
- description = :description,
- status = :status 
+ UPDATE sheet1 
+ SET Admission_No = :Admission_No, 
+ Student_Name = :Student_Name, 
+ Roll_No = :Roll_No,
+ Department = :Department,
+ Maths = :Maths 
+ Mechanics = :Mechanics 
+ BEE = :BEE 
+ Physics = :Physics 
+ Chemistry = :Chemistry 
+ Total = :Total 
+ Percentage = :Percentage 
  WHERE id = :id
  ";
  $statement = $connect->prepare($query);
@@ -29,7 +41,7 @@ if($_POST['action'] == 'edit')
 if($_POST['action'] == 'delete')
 {
  $query = "
- DELETE FROM harassment 
+ DELETE FROM sheet1 
  WHERE id = '".$_POST["id"]."'
  ";
  $statement = $connect->prepare($query);
