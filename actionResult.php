@@ -15,7 +15,7 @@ if($_POST['action'] == 'edit')
   ':Chemistry'   => $_POST['Chemistry'],
   ':Total'   => $_POST['Total'],
   ':Percentage'   => $_POST['Percentage'],
-  ':id'    => $_POST['id']
+  ':Id'    => $_POST['Id']
  );
 
  $query = "
@@ -24,14 +24,14 @@ if($_POST['action'] == 'edit')
  Student_Name = :Student_Name, 
  Roll_No = :Roll_No,
  Department = :Department,
- Maths = :Maths 
- Mechanics = :Mechanics 
- BEE = :BEE 
- Physics = :Physics 
- Chemistry = :Chemistry 
- Total = :Total 
+ Maths = :Maths, 
+ Mechanics = :Mechanics, 
+ BEE = :BEE,
+ Physics = :Physics, 
+ Chemistry = :Chemistry, 
+ Total = :Total, 
  Percentage = :Percentage 
- WHERE id = :id
+ WHERE Id = :Id
  ";
  $statement = $connect->prepare($query);
  $statement->execute($data);
@@ -42,12 +42,10 @@ if($_POST['action'] == 'delete')
 {
  $query = "
  DELETE FROM sheet1 
- WHERE id = '".$_POST["id"]."'
+ WHERE Id = '".$_POST["Id"]."'
  ";
  $statement = $connect->prepare($query);
  $statement->execute();
  echo json_encode($_POST);
 }
-
-
 ?>

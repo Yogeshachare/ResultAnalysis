@@ -75,9 +75,21 @@ $('#user_data').on('draw.dt', function(){
   url:"actionResult.php",
   dataType:"json",
   columns:{
-   identifier : [0, 'id'],
-   editable:[[1,"Admission_No"]]
+   identifier : [0, 'Id'],
+   editable:[<?php
+      for($x = 1; $x < count($columnArr); $x++){
+    ?>
+    [<?php echo $x  ?>, "<?php echo $columnArr[$x]?>"] <?php if ($x == count($columnArr) - 1){
+      echo "";
+    }
+    else{
+      echo ",";
+    } ?>
+    
+    
+    <?php } ?>]
   },
+  
   restoreButton:false,
   onSuccess:function(data, textStatus, jqXHR)
   {
@@ -88,8 +100,7 @@ $('#user_data').on('draw.dt', function(){
    }
   }
  });
-});
- 
+})
 }); 
 </script>
 </div>
