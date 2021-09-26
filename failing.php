@@ -12,36 +12,14 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
-    <title>Excel upload</title>
+<title>Top Three</title>
   </head>
   <body>
 
-  <?php
-// Database configuration
-$dbHost     = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbName     = "result";
+  <?php 
+  include "columnArray.php";
+  ?>
 
-// Create database connection
-$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-
-// Check connection
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
-
-include "includes/dbh.inc.php";
-// Query to get columns from table
-$query = $conn->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'result' AND TABLE_NAME = 'sheet1'");
-
-while($row = $query->fetch_assoc()){
-    $result[] = $row;
-}
-
-// Array of all column names
-$columnArr = array_column($result, 'COLUMN_NAME');
-?>
 
   <div class="container" id="Table">
   <h3>Result</h3>
@@ -59,16 +37,15 @@ $columnArr = array_column($result, 'COLUMN_NAME');
     </thead>
     </table>
     <script type="text/javascript" language="javascript" >
- $(document).ready(function(){
-
+$(document).ready(function(){
 var dataTable = $('#user_data').DataTable({
  "processing" : true,
  "serverSide" : true,
  "order" : [],
  "ajax" : {
-  url:"fetchResult.php",
-  type:"POST"
- }
+  url:"getFailing.php",
+  type:"POST",
+ },
 });
 $('#user_data').on('draw.dt', function(){
  $('#user_data').Tabledit({
@@ -104,12 +81,14 @@ $('#user_data').on('draw.dt', function(){
 }); 
 </script>
 </div>
-
 <div class = container>
-
+<?php  $noOfFailing = $result2 -> num_rows;
+$Total = $result3 -> num_rows;
+$z = (($Total - $noOfFailing) / $Total) * 100;
+?>
 <a class="btn btn-primary" href="topThree.php">Top 3</a>
-<a class="btn btn-primary" href="Failing.php">Failing</a>
-
+<h4 style="text-align:right;">Passing Students :- <?php echo round($z);?>%</h4>
 </div>
+<?php  $noOfPassing = $result2 -> num_rows ?>
   </body>
 </html>

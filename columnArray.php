@@ -9,4 +9,7 @@ while($row = $query->fetch_assoc()){
 
 // Array of all column names
 $columnArr = array_column($result, 'COLUMN_NAME');
+
+$result2 = $conn->query("SELECT * FROM `sheet1` WHERE Maths < 40 OR Chemistry < 40 OR BEE < 40 OR Physics < 40 OR Mechanics < 40");
+$result3 = $conn->query("SELECT * FROM `sheet1`");
 ?>
