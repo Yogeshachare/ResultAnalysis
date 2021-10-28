@@ -104,5 +104,12 @@ $('#user_data').on('draw.dt', function(){
 }); 
 </script>
 </div>
+
+<div class = container>
+
+<a class="btn btn-primary" href="topThree.php">Top 3</a>
+<a class="btn btn-primary" href="Failing.php">Failing</a>
+
+</div>
   </body>
 </html>

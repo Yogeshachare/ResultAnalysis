@@ -9,7 +9,32 @@ for($x = 0; $x < count($columnArr); $x++){
 $column = array($columnArr[$x]);
 }
 
-$query = "SELECT * FROM sheet1 ORDER BY Percentage DESC LIMIT 3";
+$query = "SELECT * FROM sheet1";
+
+if(isset($_POST["search"]["value"]))
+{
+ $query .= '
+ WHERE Admission_No LIKE "%'.$_POST["search"]["value"].'%" 
+ OR Student_Name LIKE "%'.$_POST["search"]["value"].'%"
+ OR Roll_No LIKE "%'.$_POST["search"]["value"].'%"
+ OR Department LIKE "%'.$_POST["search"]["value"].'%"
+ ';
+}
+
+if(isset($_POST["order"]))
+{
+ $query .= 'ORDER BY '.$column[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' ';
+}
+else
+{
+ $query .= 'ORDER BY id ASC ';
+}
+$query1 = '';
+
+if($_POST["length"] != -1)
+{
+ $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
+}
 
 $statement = $connect->prepare($query);
 
@@ -17,7 +42,7 @@ $statement->execute();
 
 $number_filter_row = $statement->rowCount();
 
-$statement = $connect->prepare($query);
+$statement = $connect->prepare($query . $query1);
 
 $statement->execute();
 
@@ -35,7 +60,7 @@ foreach($result as $row)
 }
 function count_all_data($connect)
 {
- $query = "SELECT * FROM sheet1 ORDER BY Percentage DESC LIMIT 5";
+ $query = "SELECT * FROM sheet1";
  $statement = $connect->prepare($query);
  $statement->execute();
  return $statement->rowCount();
