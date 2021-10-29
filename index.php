@@ -54,7 +54,7 @@ if(isset($_FILES['excel']['name'])){
 			}
       if(mysqli_query($con,$query))
 			{
-				header("Location: ./showResult.php?added=success");
+				header("Location: ./sem1/index.php?added=success");
 			}
 			$i++;
 		}
