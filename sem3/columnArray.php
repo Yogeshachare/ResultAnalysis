@@ -35,25 +35,25 @@ while( $row = mysqli_fetch_array( $resultPercent, MYSQLI_ASSOC) ) {
 }
 
 # IT 
-$departPassIT = $conn->query("SELECT * FROM `sheet1` WHERE `Department` = 'Info Tech' AND Maths > 40 AND Mechanics > 40 AND BEE > 40 AND Physics > 40 AND Chemistry > 40 ");
+$departPassIT = $conn->query("SELECT * FROM `sem_iii` WHERE DSA > 60");
 $resultIT  = $departPassIT -> num_rows;
 
 # CS
-$departPassCS = $conn->query("SELECT * FROM `sheet1` WHERE `Department` = 'Computer Sc' AND Maths > 40 AND Mechanics > 40 AND BEE > 40 AND Physics > 40 AND Chemistry > 40 ");
+$departPassCS = $conn->query("SELECT * FROM `sem_iii` WHERE DBMS > 60");
 $resultCS  = $departPassCS -> num_rows;
 
 
 # EXTC
-$departPassEXTC = $conn->query("SELECT * FROM `sheet1` WHERE `Department` = 'EXTC' AND Maths > 40 AND Mechanics > 40 AND BEE > 40 AND Physics > 40 AND Chemistry > 40 ");
+$departPassEXTC = $conn->query("SELECT * FROM `sem_iii` WHERE PCE > 60");
 $resultEXTC  = $departPassEXTC -> num_rows;
 
 
 # Electronics
-$departPassElec = $conn->query("SELECT * FROM `sheet1` WHERE `Department` = 'Electronics' AND Maths > 40 AND Mechanics > 40 AND BEE > 40 AND Physics > 40 AND Chemistry > 40 ");
+$departPassElec = $conn->query("SELECT * FROM `sem_iii` WHERE LD > 60");
 $resultElec  = $departPassElec -> num_rows;
 
 
 # Mechanical
-$departPassMech = $conn->query("SELECT * FROM `sheet1` WHERE `Department` = 'Mechanical' AND Maths > 40 AND Mechanics > 40 AND BEE > 40 AND Physics > 40 AND Chemistry > 40 ");
+$departPassMech = $conn->query("SELECT * FROM `sem_iii` WHERE Maths > 60 ");
 $resultMech  = $departPassMech -> num_rows;
 ?>

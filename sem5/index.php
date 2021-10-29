@@ -62,15 +62,15 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Department', 'Passing'],
-          ['IT',   <?php echo $resultIT;?>],
-          ['CS',   <?php echo $resultCS;?>],
-          ['EXTC', <?php echo $resultEXTC;?>],
-          ['Electronic', <?php echo $resultElec;?>],
-          ['Mechanical',  <?php echo $resultMech;?>]
+          ['MEP',   <?php echo $resultIT;?>],
+          ['IP',   <?php echo $resultCS;?>],
+          ['ADMT', <?php echo $resultEXTC;?>],
+          ['ECOM', <?php echo $resultElec;?>],
+          ['CNS',  <?php echo $resultMech;?>]
         ]);
 
         var options = {
-          title: 'Department Passing',
+          title: 'More than 60 in Subjects',
           pieHole: 0.4,
         };
 
