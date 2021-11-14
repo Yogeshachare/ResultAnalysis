@@ -27,7 +27,7 @@
   <?php
    include "columnArray.php";
    $noOfFailing = $result2 -> num_rows;
-    $Total = $result3 -> num_rows;
+    $Total = $result3 -> num_rows; 
     $passPercent = (($Total - $noOfFailing) / $Total) * 100;
     $failPercent = 100 - $passPercent;
 ?>

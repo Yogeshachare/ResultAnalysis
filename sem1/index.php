@@ -147,6 +147,9 @@ function drawBasic() {
             <li>
 	              <a href="../sem8/index.php">Semester Eight</a>
 	          </li>
+            <li>
+	              <a href="download.php">Download Result</a>
+	          </li>
 	      </div>
     	</nav>
 
